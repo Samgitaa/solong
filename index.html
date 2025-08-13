@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        #btn-alert {
+            border: none;
+            border-radius: 5px;
+            padding: 7px 10px;
+            background-color: rgb(164, 90, 127);
+            font-size: 1.3em;
+            color: #fff;
+            cursor: pointer;
+            transition: 0.2s;
+            position: fixed;
+            left: 45%;
+            top: 45%;
+        }
+
+        #btn-alert:hover {
+            opacity: 0.8;
+        }
+
+        #btn-alert:focus {
+            outline: rgb(233, 159, 171) solid 3px;
+            outline-offset: 3px;
+        }
+
+        @media (max-width: 576px) {
+            #btn-alert {
+                left: 38%;
+            }
+        }
+    </style>
+    <title>Happy Birthday</title>
+</head>
+
+<body>
+
+    <!-- Musik autoplay mute -->
+    <audio id="bgm" loop muted>
+        <source src="Nadin.mp3" type="audio/mpeg">
+    </audio>
+
+    <button id="btn-alert">Klik disini</button>
+
+    <script>
+        document.getElementById('btn-alert').addEventListener('click', async () => {
+            const music = document.getElementById('bgm');
+
+            // Pastikan audio siap
+            music.muted = false;
+            music.load();
+            await music.play().catch(err => console.log("Audio error:", err));
+
+            // Jalankan popup ucapan
+            await Swal.fire("Haiii, puput bocilll");
+            await Swal.fire("Selamat Ulang Tahun Yaa..");
+            await Swal.fire({
+                title: "HAPPY BIRTHDAY PUPUT",
+                text: "Semoga selalu dalam keadaan sehat, kuat, sabar, jangan sering nangis-nangis lagi dan selalu baik sama semua orang",
+                imageUrl: "assets/nailong2.jpg",
+                imageWidth: 400,
+                imageHeight: 300,
+                imageAlt: "Ucapan Ulang Tahun"
+            });
+            await Swal.fire({
+                title: "Gimana hadiahnya kamu suka ga?",
+                text: "Tolong Jawab Yang Jujur yaa",
+                icon: "question",
+                showDenyButton: true,
+                denyButtonText: "Gak Suka",
+                confirmButtonColor: "#3085d6",
+                confirmButtonText: "Suka"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: "Yeyyy",
+                        text: "Syukurlah kalau kamu suka seneng dengernya :D!",
+                        imageUrl: "assets/nailong1.jpg",
+                        imageWidth: 400,
+                        imageHeight: 300,
+                        imageAlt: "Gambar Dino Kuning Seneng"
+                    });
+                } else {
+                    Swal.fire({
+                        title: "Yahhh",
+                        text: "Maaf yaa kalau kurang bagus :(",
+                        imageUrl: "assets/nailong3.jpg",
+                        imageWidth: 400,
+                        imageHeight: 300,
+                        imageAlt: "Gambar Dino Kuning Sedih"
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
